@@ -9,11 +9,11 @@ bun install
 bun dev
 ```
 ## Template structure
-- src/solana/solana-provider.tsx: Solana provider for the wallet
-- src/solana/cluster-provider.tsx: Solana cluster provider
-- src/solana/hooks.tsx: various hooks: balance, tx history, token accounts, transfer sol, send tx
-- src/App.tsx: Main app
-- src/index.tsx: Entry point
+- `src/solana/solana-provider.tsx`: Solana provider for the wallet
+- `src/solana/cluster-provider.tsx`: Solana cluster provider
+- `src/solana/hooks.tsx`: various hooks: balance, tx history, token accounts, transfer sol, send tx
+- `src/App.tsx`: Main app
+- `src/index.tsx`: Entry point
 
 This template is barebones to give you only what's necessary. You can add navigation with React Router.
 
