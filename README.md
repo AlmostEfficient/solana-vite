@@ -1,64 +1,35 @@
 # solana-vite
-Minimal Solana + Vite template: build quick, think less, go fast.
-
-Vite + react for the frontend, Cloudflare Workers (serverless) for the backend (soon).
-
-## React + TypeScript + Vite 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Minimal Solana + Vite template: build quick, think less, go fast. Adapted from [create-solana-dapp](https://github.com/solana-developers/create-solana-dapp).
 
 ## Usage
+Rename the .env.example to .env and fill in the API keys.
 
 ```bash
-## This only serves the frontend (workers at /functions/api will not work)
-bun run dev
+bun install
+bun dev
+```
+## Template structure
+- src/solana/solana-provider.tsx: Solana provider for the wallet
+- src/solana/cluster-provider.tsx: Solana cluster provider
+- src/solana/hooks.tsx: various hooks: balance, tx history, token accounts, transfer sol, send tx
+- src/App.tsx: Main app
+- src/index.tsx: Entry point
 
-## cloudflare/fullstack but no hot reloading
-bun run preview
+This template is barebones to give you only what's necessary. You can add navigation with React Router.
+
+## Deploy
+You can deploy this to any static site host, such as Vercel, Cloudflare Pages, or GitHub Pages.
+
+**Vercel**  
+With the [Vercel CLI](https://vercel.com/docs/cli) installed:
+```bash
+vercel
 ```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+**Cloudflare Pages**  
+With the Wrangler CLI:
+```bash
+bun add wrangler
+bun run build
+bun wrangler pages deploy ./dist
 ```

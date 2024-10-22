@@ -1,15 +1,20 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ClusterProvider } from './solana/cluster-provider.tsx'
 import { SolanaProvider } from './solana/solana-provider.tsx'
 
+const queryClient = new QueryClient()
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ClusterProvider>
+    <QueryClientProvider client={queryClient}>
+      <ClusterProvider>
       <SolanaProvider>
-        <App />
-      </SolanaProvider>
-    </ClusterProvider>
+          <App />
+        </SolanaProvider>
+      </ClusterProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )
