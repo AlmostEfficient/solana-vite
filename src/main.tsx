@@ -10,7 +10,8 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ClusterProvider clusterName="mainnet"> // defaults to devnet unless mainnet is specified
+      {/* defaults to devnet unless mainnet is specified */}
+      <ClusterProvider clusterName="mainnet"> 
       <SolanaProvider>
           <App />
         </SolanaProvider>
